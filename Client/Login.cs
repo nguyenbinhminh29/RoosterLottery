@@ -9,15 +9,6 @@ namespace Client
             InitializeComponent();
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private async void button1_Click(object sender, EventArgs e)
         {
