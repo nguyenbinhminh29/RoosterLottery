@@ -9,7 +9,7 @@ namespace Server.Controllers
         [HttpGet(Name = "GetGreeting")]
         public Greeting Get()
         {
-            return new Greeting { Message = "Good luck!" };
+            return new Greeting { Message = "Good luck to you!" };
         }
     }
 }
