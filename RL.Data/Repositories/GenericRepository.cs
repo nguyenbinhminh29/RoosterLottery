@@ -16,7 +16,7 @@ namespace RL.Data.Repositories
             GC.Collect();
         }
 
-        public IDbConnection GetConnection(string connectionStr)
+        public IDbConnection GetConnection(string connectionStr = "")
         {
             DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
             DbProviderFactory factory = DbProviderFactories.GetFactory("System.Data.SqlClient");
