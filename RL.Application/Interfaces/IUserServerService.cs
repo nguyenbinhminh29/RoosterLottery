@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace RL.Application.Interfaces
 {
-    public interface IUserService
+    public interface IUserServerService
     {
         GenericResult GetUser(string phoneNo);
         GenericResult CreateUser(UserModel user);
+        GenericResult CreateUserTicket(UserTicketModel userTicket);
     }
 }

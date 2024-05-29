@@ -12,9 +12,9 @@ namespace Server.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IUserService _userService;
+        private IUserServerService _userService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserServerService userService)
         {
             _userService = userService;
         }
@@ -22,14 +22,19 @@ namespace Server.Controllers
         [HttpGet("UserLogin")]
         public IActionResult Get(string phoneNo)
         {
-            GenericResult result = _userService.GetUser(phoneNo);
-
-            if (result.Success)
+            try
             {
+                GenericResult result = _userService.GetUser(phoneNo);
                 return Ok(result);
             }
-            else
+            catch (Exception ex)
             {
+                GenericResult result = new()
+                {
+                    Success = false,
+                    Message = ex.Message
+                };
+
                 return BadRequest(result);
             }
         }
@@ -54,7 +59,7 @@ namespace Server.Controllers
                     return BadRequest(result);
                 }
 
-                if (string.IsNullOrEmpty(user.PhoneNo))//!user.PhoneNo.IsValidPhoneNumber())
+                if (string.IsNullOrEmpty(user.PhoneNo))
                 {
                     result.Success = false;
                     result.Message = "Phone number is incorrect.";
@@ -62,14 +67,58 @@ namespace Server.Controllers
                 }
 
                 result = _userService.CreateUser(user);
-                if (result.Success)
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+                return BadRequest(result);
+            }
+        }
+
+        [HttpGet("UserTicket")]
+        public IActionResult GetUserTicket(string phoneNo)
+        {
+            try
+            {
+                GenericResult result = _userService.GetUser(phoneNo);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                GenericResult result = new()
                 {
-                    return Ok(result);
-                }
-                else
+                    Success = false,
+                    Message = ex.Message
+                };
+
+                return BadRequest(result);
+            }
+        }
+
+        [HttpPost("BuyTicket")]
+        public IActionResult UserBuyTicket([FromBody] UserTicketModel userTicket)
+        {
+            GenericResult result = new();
+            try
+            {
+                if (userTicket == null)
                 {
+                    result.Success = false;
+                    result.Message = "User ticket must be not null.";
                     return BadRequest(result);
                 }
+
+                if (string.IsNullOrEmpty(userTicket.PhoneNo))
+                {
+                    result.Success = false;
+                    result.Message = "PhoneNo must be not null.";
+                    return BadRequest(result);
+                }
+
+                result = _userService.CreateUserTicket(userTicket);
+                return Ok(result);
             }
             catch (Exception ex)
             {

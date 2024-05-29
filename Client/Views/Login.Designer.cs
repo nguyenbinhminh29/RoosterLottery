@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             btnLogin = new Button();
-            textBox1 = new TextBox();
+            txtPhoneNo = new TextBox();
             lblPhoneNo = new Label();
             btnRegister = new Button();
             SuspendLayout();
@@ -39,17 +39,18 @@
             btnLogin.Location = new Point(229, 20);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(84, 30);
-            btnLogin.TabIndex = 0;
+            btnLogin.TabIndex = 2;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
-            btnLogin.Click += button1_Click;
+            btnLogin.Click += BtnLogin_Click;
             // 
-            // textBox1
+            // txtPhoneNo
             // 
-            textBox1.Location = new Point(81, 24);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(142, 23);
-            textBox1.TabIndex = 1;
+            txtPhoneNo.Location = new Point(81, 24);
+            txtPhoneNo.Name = "txtPhoneNo";
+            txtPhoneNo.Size = new Size(142, 23);
+            txtPhoneNo.TabIndex = 1;
+            txtPhoneNo.KeyPress += TxtPhoneNo_KeyPress;
             // 
             // lblPhoneNo
             // 
@@ -65,10 +66,10 @@
             btnRegister.Location = new Point(319, 20);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(84, 30);
-            btnRegister.TabIndex = 0;
+            btnRegister.TabIndex = 2;
             btnRegister.Text = "Register";
             btnRegister.UseVisualStyleBackColor = true;
-            btnRegister.Click += button1_Click;
+            btnRegister.Click += BtnRegister_Click;
             // 
             // Login
             // 
@@ -76,7 +77,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(434, 75);
             Controls.Add(lblPhoneNo);
-            Controls.Add(textBox1);
+            Controls.Add(txtPhoneNo);
             Controls.Add(btnRegister);
             Controls.Add(btnLogin);
             MaximizeBox = false;
@@ -91,7 +92,7 @@
         #endregion
 
         private Button btnLogin;
-        private TextBox textBox1;
+        private TextBox txtPhoneNo;
         private Label lblPhoneNo;
         private Button btnRegister;
     }

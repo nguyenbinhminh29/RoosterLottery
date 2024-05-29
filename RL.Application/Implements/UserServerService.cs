@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace RL.Application.Implements
 {
-    public class UserService(IConfiguration config, IGenericRepository<UserModel> dbRepository) : IUserService
+    public class UserServerService(IConfiguration config, IGenericRepository<UserModel> dbRepository) : IUserServerService
     {
         private readonly IGenericRepository<UserModel> _dbRepository = dbRepository;
         private readonly IConfiguration _config = config;
@@ -69,24 +69,76 @@ namespace RL.Application.Implements
                 {
                     using var db = _dbRepository.GetConnection(connectStr);
                     var parameters = new DynamicParameters();
+                    parameters.Add("Name", user.Name);
                     parameters.Add("PhoneNo", user.PhoneNo);
+                    parameters.Add("Birthday", user.Birthday);
 
-                    var items = db.Query<UserModel>("USP_GET_UserByPhone", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
-                    if (items.Any())
+                    IEnumerable<DBResultModel> res = db.Query<DBResultModel>("USP_INSERT_NewUser", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
+
+                    if (res.Any())
                     {
-                        result.Success = false;
-                        result.Message = "User already exists.";
+                        if (res.FirstOrDefault().ErrCode == 0)
+                        {
+                            result.Success = true;
+                        }
+                        else
+                        {
+                            result.Success = false;
+                        }
+                        result.Message = res.FirstOrDefault().ErrMsg;
+                        result.Data = user;
                     }
                     else
                     {
-                        parameters.Add("Name", user.Name);
-                        parameters.Add("Birthday", user.Birthday);
-                        // Insert new user
-                        //db.Execute("USP_INSERT_NewUser", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
+                        result.Success = false;
+                    }
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "Cannot connect to database.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Code = 400;
+                result.Message = "Exception: " + ex.Message;
+            }
+            return result;
+        }
 
-                        var res = db.Query<DBResultModel>("USP_INSERT_NewUser", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
+        public GenericResult CreateUserTicket(UserTicketModel userTicket)
+        {
+            GenericResult result = new();
+            try
+            {
+                string? connectStr = _config.GetConnectionString("DefaultConnection");
+                if (!string.IsNullOrEmpty(connectStr))
+                {
+                    using var db = _dbRepository.GetConnection(connectStr);
+                    var parameters = new DynamicParameters();
+                    parameters.Add("PhoneNo", userTicket.PhoneNo);
+                    parameters.Add("TicketNum", userTicket.TicketNumber);
 
-                        result.Success= true;
+                    IEnumerable<DBResultModel> res = db.Query<DBResultModel>("USP_INSERT_UserTicket", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
+
+                    if (res.Any())
+                    {
+                        if (res.FirstOrDefault().ErrCode == 0)
+                        {
+                            result.Success = true;
+                        }
+                        else
+                        {
+                            result.Success = false;
+                        }
+                        result.Message = res.FirstOrDefault().ErrMsg;
+                        result.Data = userTicket;
+                    }
+                    else
+                    {
+                        result.Success = false;
                     }
                 }
                 else

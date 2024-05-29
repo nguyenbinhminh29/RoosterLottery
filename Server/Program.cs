@@ -13,7 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserServerService, UserServerService>();
+builder.Services.AddTransient<ILotteryServerService, lotteryServerService>();
 
 var app = builder.Build();
 
