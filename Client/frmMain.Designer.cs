@@ -179,7 +179,7 @@
             // cbbNextLottery
             // 
             cbbNextLottery.FormattingEnabled = true;
-            cbbNextLottery.Location = new Point(292, 14);
+            cbbNextLottery.Location = new Point(280, 15);
             cbbNextLottery.Name = "cbbNextLottery";
             cbbNextLottery.Size = new Size(146, 23);
             cbbNextLottery.TabIndex = 7;
@@ -187,7 +187,7 @@
             // lblNextLottery
             // 
             lblNextLottery.AutoSize = true;
-            lblNextLottery.Location = new Point(214, 17);
+            lblNextLottery.Location = new Point(202, 17);
             lblNextLottery.Name = "lblNextLottery";
             lblNextLottery.Size = new Size(72, 15);
             lblNextLottery.TabIndex = 8;
@@ -195,7 +195,7 @@
             // 
             // btnGetNextLottery
             // 
-            btnGetNextLottery.Location = new Point(444, 12);
+            btnGetNextLottery.Location = new Point(432, 12);
             btnGetNextLottery.Name = "btnGetNextLottery";
             btnGetNextLottery.Size = new Size(75, 27);
             btnGetNextLottery.TabIndex = 9;
@@ -214,7 +214,7 @@
             // 
             // btnSubmitNumber
             // 
-            btnSubmitNumber.Location = new Point(545, 12);
+            btnSubmitNumber.Location = new Point(513, 12);
             btnSubmitNumber.Name = "btnSubmitNumber";
             btnSubmitNumber.Size = new Size(75, 27);
             btnSubmitNumber.TabIndex = 9;
@@ -239,7 +239,7 @@
             lblLogout.TabIndex = 14;
             lblLogout.TabStop = true;
             lblLogout.Text = "Logout";
-            lblLogout.LinkClicked += lblLogout_LinkClicked;
+            lblLogout.LinkClicked += LblLogout_LinkClicked;
             // 
             // frmMain
             // 
