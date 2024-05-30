@@ -36,7 +36,7 @@ namespace RL.Application.Implements
                         result.Success = true;
 
                         // update login
-                        db.Execute("USP_UPDATE_UserLogin", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600); ;
+                        db.Execute("USP_UPDATE_UserLogin", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
                     }
                     else
                     {
@@ -108,6 +108,53 @@ namespace RL.Application.Implements
             return result;
         }
 
+        public GenericResult GetUserTicket(string phoneNo, string purchaseDate)
+        {
+            GenericResult result = new();
+            try
+            {
+                string? connectStr = _config.GetConnectionString("DefaultConnection");
+                if (!string.IsNullOrEmpty(connectStr))
+                {
+                    using var db = _dbRepository.GetConnection(connectStr);
+                    var parameters = new DynamicParameters();
+                    parameters.Add("PhoneNo", phoneNo);
+                    parameters.Add("PhoneNo", phoneNo);
+                    if (string.IsNullOrEmpty(purchaseDate))
+                    {
+                        parameters.Add("PurchaseDate", null);
+                    }
+                    else
+                    {
+                        parameters.Add("PurchaseDate", purchaseDate);
+                    }
+
+                    var items = db.Query<TicketModel>("USP_GET_UserTicket", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
+                    if (items.Any())
+                    {
+                        result.Data = items;
+                    }
+                    else
+                    {
+                        result.Data=new List<TicketModel>();
+                    }
+                        result.Success = true;
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "Cannot connect to database.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Code = 400;
+                result.Message = "Exception: " + ex.Message;
+            }
+            return result;
+        }
+
         public GenericResult CreateUserTicket(UserTicketModel userTicket)
         {
             GenericResult result = new();
@@ -120,6 +167,7 @@ namespace RL.Application.Implements
                     var parameters = new DynamicParameters();
                     parameters.Add("PhoneNo", userTicket.PhoneNo);
                     parameters.Add("TicketNum", userTicket.TicketNumber);
+                    parameters.Add("LotteryPeriod", userTicket.LotteryPeriod);
 
                     IEnumerable<DBResultModel> res = db.Query<DBResultModel>("USP_INSERT_UserTicket", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
 

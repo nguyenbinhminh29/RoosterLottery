@@ -11,5 +11,7 @@ namespace RL.Application.Interfaces
     {
         Task<GenericResult> UserLoginByPhone(string phoneNo);
         Task<GenericResult> CreateUser(string name, DateTime birthday, string phoneNo);
+        Task<GenericResult> GetUserTicket(string phoneNo, DateTime purchaseDate);
+        Task<GenericResult> SubmitUserTicket(string phoneNo, int newNumber, string lotteryPeriod);
     }
 }

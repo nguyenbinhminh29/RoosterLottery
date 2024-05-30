@@ -11,6 +11,7 @@ namespace RL.Application.Interfaces
     {
         GenericResult GetUser(string phoneNo);
         GenericResult CreateUser(UserModel user);
+        GenericResult GetUserTicket(string phoneNo, string purchaseDate);
         GenericResult CreateUserTicket(UserTicketModel userTicket);
     }
 }

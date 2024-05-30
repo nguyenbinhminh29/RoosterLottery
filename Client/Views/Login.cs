@@ -4,6 +4,7 @@ using RL.Application.Extensions;
 using RL.Application.Implements;
 using RL.Application.Interfaces;
 using RL.Data.Models;
+using System.ComponentModel;
 using System.Xml.Linq;
 
 namespace Client
@@ -26,14 +27,11 @@ namespace Client
             txtPhoneNo.Focus();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
-            GreetingService s = new GreetingService();
-            string? message = await s.GetGreetingMessage();
-            if (message != null)
-            {
-                MessageBox.Show(message);
-            }
+            Application.Exit();
+
+            base.OnClosing(e);
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)

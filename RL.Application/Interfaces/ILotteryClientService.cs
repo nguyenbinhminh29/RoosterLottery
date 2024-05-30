@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RL.Application.Interfaces
 {
-    public interface ILotteryServerService
+    public interface ILotteryClientService
     {
-        GenericResult GetLottery(string openDate);
-        GenericResult GetNextPeriod();
+        Task<GenericResult> GetLotteryTransactions(DateTime openDate);
+        Task<GenericResult> GetNextLotteryPeriod();
     }
 }

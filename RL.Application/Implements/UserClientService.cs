@@ -33,14 +33,6 @@ namespace RL.Application.Implements
                 if (result != null)
                 {
                     return result;
-                    //if (result.Success)
-                    //{
-                    //    return result.Data.ToString().DeserializeObject<UserModel>();
-                    //}
-                    //else
-                    //{
-                    //    throw new Exception(result.Message);
-                    //}
                 }
                 else
                 {
@@ -63,6 +55,61 @@ namespace RL.Application.Implements
             };
 
             string requestUri = $"Users/CreateUser";
+            var content = new StringContent(model.ToJson(), Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync(requestUri, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                GenericResult? result = responseBody.DeserializeObject<GenericResult>();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("An unknown error.");
+                }
+            }
+            else
+            {
+                throw new Exception($"Error: {response.StatusCode}");
+            }
+        }
+
+        public async Task<GenericResult> GetUserTicket(string phoneNo, DateTime purchaseDate)
+        {
+            HttpResponseMessage response = await _client.GetAsync($"Users/UserTicket?phoneNo={phoneNo}&purchaseDate={purchaseDate:yyyy-MM-dd}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                GenericResult? result = responseBody.DeserializeObject<GenericResult>();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("An unknown error.");
+                }
+            }
+            else
+            {
+                throw new Exception($"Error: {response.StatusCode}");
+            }
+        }
+
+        public async Task<GenericResult> SubmitUserTicket(string phoneNo, int newNumber, string lotteryPeriod)
+        {
+            UserTicketModel model = new()
+            {
+                PhoneNo = phoneNo,
+                TicketNumber = newNumber,
+                LotteryPeriod = lotteryPeriod
+            };
+
+            string requestUri = $"Users/BuyTicket";
             var content = new StringContent(model.ToJson(), Encoding.UTF8, "application/json");
             var response = await _client.PostAsync(requestUri, content);
 

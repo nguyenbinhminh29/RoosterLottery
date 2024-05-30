@@ -4,6 +4,8 @@ using RL.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers(option => option.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -14,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddTransient<IUserServerService, UserServerService>();
-builder.Services.AddTransient<ILotteryServerService, lotteryServerService>();
+builder.Services.AddTransient<ILotteryServerService, LotteryServerService>();
 
 var app = builder.Build();
 

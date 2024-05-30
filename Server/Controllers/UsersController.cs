@@ -78,11 +78,21 @@ namespace Server.Controllers
         }
 
         [HttpGet("UserTicket")]
-        public IActionResult GetUserTicket(string phoneNo)
+        public IActionResult GetUserTicket(string phoneNo, string purchaseDate)
         {
             try
             {
-                GenericResult result = _userService.GetUser(phoneNo);
+                GenericResult result = new();
+                DateTime fdtEtd = DateTime.Now;
+                if (!string.IsNullOrEmpty(purchaseDate) && !DateTime.TryParseExact(purchaseDate.Trim(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out fdtEtd))
+                {
+                    result.Success = false;
+                    result.Message = "PurchaseDate format must be 'yyyy-MM-dd'";
+
+                    return BadRequest(result);
+                }
+
+                result = _userService.GetUserTicket(phoneNo, purchaseDate);
                 return Ok(result);
             }
             catch (Exception ex)

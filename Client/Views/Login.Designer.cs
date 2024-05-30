@@ -50,6 +50,7 @@
             txtPhoneNo.Name = "txtPhoneNo";
             txtPhoneNo.Size = new Size(142, 23);
             txtPhoneNo.TabIndex = 1;
+            txtPhoneNo.Text = "0123456789";
             txtPhoneNo.KeyPress += TxtPhoneNo_KeyPress;
             // 
             // lblPhoneNo
