@@ -43,7 +43,7 @@ namespace ClientMonitoring
             chartControlNumber.Titles.Add(new ChartTitle() { Text = "Lottery Number" });
 
             chartControlUser.Titles.Clear();
-            chartControlNumber.Titles.Add(new ChartTitle() { Text = "Lottery User" });
+            chartControlUser.Titles.Add(new ChartTitle() { Text = "Lottery User" });
 
             LoadMonitoringNumber(DateTime.Now, DateTime.Now);
             LoadMonitoringUserTicket(DateTime.Now.AddDays(-30), DateTime.Now);
