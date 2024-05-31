@@ -11,5 +11,7 @@ namespace RL.Application.Interfaces
     {
         GenericResult GetLottery(string openDate);
         GenericResult GetNextPeriod();
+        GenericResult GetMonitoringLotteryNumber(string fromDate, string toDate);
+        GenericResult GetMonitoringLotteryUserTicket(string fromDate, string toDate);
     }
 }

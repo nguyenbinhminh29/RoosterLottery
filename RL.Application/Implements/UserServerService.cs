@@ -119,7 +119,6 @@ namespace RL.Application.Implements
                     using var db = _dbRepository.GetConnection(connectStr);
                     var parameters = new DynamicParameters();
                     parameters.Add("PhoneNo", phoneNo);
-                    parameters.Add("PhoneNo", phoneNo);
                     if (string.IsNullOrEmpty(purchaseDate))
                     {
                         parameters.Add("PurchaseDate", null);
@@ -129,14 +128,14 @@ namespace RL.Application.Implements
                         parameters.Add("PurchaseDate", purchaseDate);
                     }
 
-                    var items = db.Query<TicketModel>("USP_GET_UserTicket", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
+                    var items = db.Query<UserTicketModel>("USP_GET_UserTicket", parameters, commandType: CommandType.StoredProcedure, commandTimeout: 3600);
                     if (items.Any())
                     {
                         result.Data = items;
                     }
                     else
                     {
-                        result.Data=new List<TicketModel>();
+                        result.Data=new List<UserTicketModel>();
                     }
                         result.Success = true;
                 }

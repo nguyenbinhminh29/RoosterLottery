@@ -61,7 +61,7 @@
             lblWelcome.Dock = DockStyle.Right;
             lblWelcome.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblWelcome.ForeColor = SystemColors.HotTrack;
-            lblWelcome.Location = new Point(880, 0);
+            lblWelcome.Location = new Point(992, 0);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(16, 15);
             lblWelcome.TabIndex = 0;
@@ -72,13 +72,13 @@
             dtpLotteryTrans.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dtpLotteryTrans.Location = new Point(15, 20);
             dtpLotteryTrans.Name = "dtpLotteryTrans";
-            dtpLotteryTrans.Size = new Size(354, 23);
+            dtpLotteryTrans.Size = new Size(413, 23);
             dtpLotteryTrans.TabIndex = 2;
             // 
             // btnViewLotteryTrans
             // 
             btnViewLotteryTrans.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnViewLotteryTrans.Location = new Point(375, 18);
+            btnViewLotteryTrans.Location = new Point(434, 18);
             btnViewLotteryTrans.Name = "btnViewLotteryTrans";
             btnViewLotteryTrans.Size = new Size(75, 26);
             btnViewLotteryTrans.TabIndex = 3;
@@ -94,7 +94,7 @@
             grpLotteryTrans.Dock = DockStyle.Fill;
             grpLotteryTrans.Location = new Point(0, 0);
             grpLotteryTrans.Name = "grpLotteryTrans";
-            grpLotteryTrans.Size = new Size(463, 381);
+            grpLotteryTrans.Size = new Size(522, 381);
             grpLotteryTrans.TabIndex = 5;
             grpLotteryTrans.TabStop = false;
             grpLotteryTrans.Text = "Past Lottery List";
@@ -110,7 +110,7 @@
             grvLotteryTrans.Name = "grvLotteryTrans";
             grvLotteryTrans.ReadOnly = true;
             grvLotteryTrans.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grvLotteryTrans.Size = new Size(433, 318);
+            grvLotteryTrans.Size = new Size(492, 318);
             grvLotteryTrans.TabIndex = 6;
             // 
             // grbUserTicket
@@ -121,7 +121,7 @@
             grbUserTicket.Dock = DockStyle.Fill;
             grbUserTicket.Location = new Point(0, 0);
             grbUserTicket.Name = "grbUserTicket";
-            grbUserTicket.Size = new Size(430, 381);
+            grbUserTicket.Size = new Size(483, 381);
             grbUserTicket.TabIndex = 5;
             grbUserTicket.TabStop = false;
             grbUserTicket.Text = "User Ticket";
@@ -137,7 +137,7 @@
             grvUserTicket.Name = "grvUserTicket";
             grvUserTicket.ReadOnly = true;
             grvUserTicket.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grvUserTicket.Size = new Size(400, 318);
+            grvUserTicket.Size = new Size(453, 318);
             grvUserTicket.TabIndex = 6;
             // 
             // dtpUserTicket
@@ -145,13 +145,13 @@
             dtpUserTicket.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dtpUserTicket.Location = new Point(15, 20);
             dtpUserTicket.Name = "dtpUserTicket";
-            dtpUserTicket.Size = new Size(321, 23);
+            dtpUserTicket.Size = new Size(374, 23);
             dtpUserTicket.TabIndex = 2;
             // 
             // btnViewUserTicket
             // 
             btnViewUserTicket.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnViewUserTicket.Location = new Point(342, 18);
+            btnViewUserTicket.Location = new Point(395, 18);
             btnViewUserTicket.Name = "btnViewUserTicket";
             btnViewUserTicket.Size = new Size(75, 26);
             btnViewUserTicket.TabIndex = 3;
@@ -168,18 +168,20 @@
             // splitContainerMain.Panel1
             // 
             splitContainerMain.Panel1.Controls.Add(grbUserTicket);
+            splitContainerMain.Panel1MinSize = 100;
             // 
             // splitContainerMain.Panel2
             // 
             splitContainerMain.Panel2.Controls.Add(grpLotteryTrans);
-            splitContainerMain.Size = new Size(897, 381);
-            splitContainerMain.SplitterDistance = 430;
+            splitContainerMain.Panel2MinSize = 100;
+            splitContainerMain.Size = new Size(1009, 381);
+            splitContainerMain.SplitterDistance = 483;
             splitContainerMain.TabIndex = 6;
             // 
             // cbbNextLottery
             // 
             cbbNextLottery.FormattingEnabled = true;
-            cbbNextLottery.Location = new Point(292, 14);
+            cbbNextLottery.Location = new Point(280, 15);
             cbbNextLottery.Name = "cbbNextLottery";
             cbbNextLottery.Size = new Size(146, 23);
             cbbNextLottery.TabIndex = 7;
@@ -187,7 +189,7 @@
             // lblNextLottery
             // 
             lblNextLottery.AutoSize = true;
-            lblNextLottery.Location = new Point(214, 17);
+            lblNextLottery.Location = new Point(202, 17);
             lblNextLottery.Name = "lblNextLottery";
             lblNextLottery.Size = new Size(72, 15);
             lblNextLottery.TabIndex = 8;
@@ -195,7 +197,7 @@
             // 
             // btnGetNextLottery
             // 
-            btnGetNextLottery.Location = new Point(444, 12);
+            btnGetNextLottery.Location = new Point(432, 12);
             btnGetNextLottery.Name = "btnGetNextLottery";
             btnGetNextLottery.Size = new Size(75, 27);
             btnGetNextLottery.TabIndex = 9;
@@ -214,7 +216,7 @@
             // 
             // btnSubmitNumber
             // 
-            btnSubmitNumber.Location = new Point(545, 12);
+            btnSubmitNumber.Location = new Point(513, 12);
             btnSubmitNumber.Name = "btnSubmitNumber";
             btnSubmitNumber.Size = new Size(75, 27);
             btnSubmitNumber.TabIndex = 9;
@@ -233,19 +235,19 @@
             // 
             lblLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblLogout.AutoSize = true;
-            lblLogout.Location = new Point(839, 24);
+            lblLogout.Location = new Point(951, 24);
             lblLogout.Name = "lblLogout";
             lblLogout.Size = new Size(45, 15);
             lblLogout.TabIndex = 14;
             lblLogout.TabStop = true;
             lblLogout.Text = "Logout";
-            lblLogout.LinkClicked += lblLogout_LinkClicked;
+            lblLogout.LinkClicked += LblLogout_LinkClicked;
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(896, 423);
+            ClientSize = new Size(1008, 423);
             Controls.Add(lblLogout);
             Controls.Add(txtNewNumber);
             Controls.Add(btnSubmitNumber);
@@ -255,6 +257,7 @@
             Controls.Add(cbbNextLottery);
             Controls.Add(splitContainerMain);
             Controls.Add(lblWelcome);
+            MinimumSize = new Size(1024, 320);
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Rooster Lottery";

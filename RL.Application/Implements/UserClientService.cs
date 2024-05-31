@@ -1,4 +1,5 @@
 ﻿using RL.Application.Extensions;
+using RL.Application.Helpers;
 using RL.Application.Interfaces;
 using RL.Data.Models;
 using System;
@@ -18,7 +19,7 @@ namespace RL.Application.Implements
         {
             _client = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7266/")
+                BaseAddress = new Uri(AppSettings.ServerAddress)
             };
         }
 

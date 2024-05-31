@@ -140,6 +140,9 @@ namespace Client
                     if (result.Success)
                     {
                         LoadUserTicket(DateTime.Now);
+
+                        txtNewNumber.Text = "";
+                        txtNewNumber.Focus();
                     }
                     else
                     {
@@ -150,6 +153,20 @@ namespace Client
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Lottery Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LblLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (MessageBox.Show("Do you want logout?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+            else
+            {
+                this.Hide();
+                Login login = new();
+                login.Show();
             }
         }
 
@@ -167,7 +184,6 @@ namespace Client
                 {
                     List<LotteryModel> lotteryTrans = res.Data.ToString().DeserializeObject<List<LotteryModel>>();
                     grvLotteryTrans.DataSource = lotteryTrans;
-                    SetFormatingGridView(grvLotteryTrans);
                 }
             }
 
@@ -181,23 +197,11 @@ namespace Client
             {
                 if (res.Success && res.Data != null)
                 {
-                    List<TicketModel> lotteryTrans = res.Data.ToString().DeserializeObject<List<TicketModel>>();
+                    List<UserTicketModel> lotteryTrans = res.Data.ToString().DeserializeObject<List<UserTicketModel>>();
                     grvUserTicket.DataSource = lotteryTrans;
-                    SetFormatingGridView(grvUserTicket);
                 }
             }
 
-        }
-
-        private void SetFormatingGridView(DataGridView gridView)
-        {
-            foreach (DataGridViewTextBoxColumn col in gridView.Columns)
-            {
-                if (col.ValueType == typeof(DateTime))
-                {
-                    col.DefaultCellStyle.Format = "dd/MM/yyyy";
-                }
-            }
         }
 
         private async void LoadNextLottery()
@@ -217,18 +221,5 @@ namespace Client
 
         #endregion
 
-        private void lblLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (MessageBox.Show("Do you want logout?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-            {
-                return;
-            }
-            else
-            {
-                this.Hide();
-                Login login = new();
-                login.Show();
-            }
-        }
     }
 }
