@@ -51,12 +51,12 @@ namespace Client.Views
                     return;
                 }
 
-                //if (!CheckPhone(txtPhoneNo.Text.Trim()))
-                //{
-                //    MessageBox.Show("Incorrect telephone number!", "Register", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                //    txtPhoneNo.Focus();
-                //    return;
-                //}
+                if (!int.TryParse(txtPhoneNo.Text.Trim(), out _))
+                {
+                    MessageBox.Show("Phone number is incorrect!", "Register", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    txtPhoneNo.Focus();
+                    return;
+                }
 
                 DisableCreen();
 
@@ -76,6 +76,7 @@ namespace Client.Views
                     else
                     {
                         MessageBox.Show(result.Message, "Register fail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        EnableCreen();
                     }
                 }
             }
@@ -83,7 +84,7 @@ namespace Client.Views
             {
                 MessageBox.Show(ex.Message, "Register error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                Enabled = false;
+                EnableCreen();
             }
         }
 
@@ -108,15 +109,5 @@ namespace Client.Views
             txtPhoneNo.Enabled = true;
             btnRegister.Enabled = true;
         }
-
-        //private bool CheckPhone(string no)
-        //{
-        //    var expr = new Regex(@"^(\+[0-9]{9})$");
-        //    if (expr.IsMatch(no))
-        //    {
-        //        return true;
-        //    }
-        //    else return false;
-        //}
     }
 }
