@@ -11,5 +11,7 @@ namespace RL.Application.Interfaces
     {
         Task<GenericResult> GetLotteryTransactions(DateTime openDate);
         Task<GenericResult> GetNextLotteryPeriod();
+        Task<GenericResult> GetMonitorNumber(DateTime fromDate, DateTime toDate);
+        Task<GenericResult> GetMonitorUserTicket(DateTime fromDate, DateTime toDate);
     }
 }

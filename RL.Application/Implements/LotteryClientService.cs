@@ -66,5 +66,53 @@ namespace RL.Application.Implements
                 throw new Exception($"Error: {response.StatusCode}");
             }
         }
+
+        public async Task<GenericResult> GetMonitorNumber(DateTime fromDate, DateTime toDate)
+        {
+            HttpResponseMessage response = await _client.GetAsync($"Lottery/MonitorNumber?fromDate={fromDate:yyyy-MM-dd}&toDate={toDate:yyyy-MM-dd}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                GenericResult? result = responseBody.DeserializeObject<GenericResult>();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("An unknown error.");
+                }
+            }
+            else
+            {
+                throw new Exception($"Error: {response.StatusCode}");
+            }
+        }
+
+        public async Task<GenericResult> GetMonitorUserTicket(DateTime fromDate, DateTime toDate)
+        {
+            HttpResponseMessage response = await _client.GetAsync($"Lottery/MonitorUser?fromDate={fromDate:yyyy-MM-dd}&toDate={toDate:yyyy-MM-dd}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                GenericResult? result = responseBody.DeserializeObject<GenericResult>();
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("An unknown error.");
+                }
+            }
+            else
+            {
+                throw new Exception($"Error: {response.StatusCode}");
+            }
+        }
+
+
     }
 }

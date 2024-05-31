@@ -140,6 +140,9 @@ namespace Client
                     if (result.Success)
                     {
                         LoadUserTicket(DateTime.Now);
+
+                        txtNewNumber.Text = "";
+                        txtNewNumber.Focus();
                     }
                     else
                     {
@@ -194,7 +197,7 @@ namespace Client
             {
                 if (res.Success && res.Data != null)
                 {
-                    List<TicketModel> lotteryTrans = res.Data.ToString().DeserializeObject<List<TicketModel>>();
+                    List<UserTicketModel> lotteryTrans = res.Data.ToString().DeserializeObject<List<UserTicketModel>>();
                     grvUserTicket.DataSource = lotteryTrans;
                 }
             }
